@@ -19,22 +19,22 @@ namespace Snake
                 myKey = GetAsyncKeyState((int)ConsoleKey.RightArrow);
                 if ((myKey & 0x8000) == 0x8000)
                 {
-
+                    GameManager.Instance.player.SetState((int)Player.Move.right);
                 }
                 myKey = GetAsyncKeyState((int)ConsoleKey.LeftArrow);
                 if ((myKey & 0x8000) == 0x8000)
                 {
-
+                    GameManager.Instance.player.SetState((int)Player.Move.left);
                 }
                 myKey = GetAsyncKeyState((int)ConsoleKey.UpArrow);
                 if ((myKey & 0x8000) == 0x8000)
                 {
-
+                    GameManager.Instance.player.SetState((int)Player.Move.up);
                 }
                 myKey = GetAsyncKeyState((int)ConsoleKey.DownArrow);
                 if ((myKey & 0x8000) == 0x8000)
                 {
-
+                    GameManager.Instance.player.SetState((int)Player.Move.down);
                 }
             }
         }
