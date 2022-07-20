@@ -22,8 +22,8 @@ namespace Snake
         }
         public void ResetPos()
         {
-            X = random.Next(0, Setting.Instance.GetWidth() / 2);
-            Y = random.Next(0, Setting.Instance.GetHeight() / 2);
+            X = random.Next(0, Setting.Instance.GetWidth());
+            Y = random.Next(0, Setting.Instance.GetHeight());
         }
     }
 }

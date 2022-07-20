@@ -8,7 +8,7 @@ namespace Snake
 {
     internal class MainGame
     {
-        private const int waitTick = 1000 / 30;
+        private const int waitTick = 1000 / 15;
         static void Main()
         {
             GameManager.Instance.Awake();
