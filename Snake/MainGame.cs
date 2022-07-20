@@ -8,7 +8,7 @@ namespace Snake
 {
     internal class MainGame
     {
-        private const int waitTick = 1000 / 15;
+        private const int waitTick = 1000 / 10;
         static void Main()
         {
             GameManager.Instance.Awake();
@@ -23,7 +23,11 @@ namespace Snake
                 if (currentTick - lastTick > waitTick)
                 {
                     lastTick = currentTick;
-                    GameManager.Instance.Update();
+
+                    if(GameManager.Instance.Update() == false)
+                    {
+                        return;
+                    }
                 }
                 else continue;
             }

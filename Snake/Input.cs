@@ -11,32 +11,8 @@ namespace Snake
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         public static extern short GetAsyncKeyState(int myKey);
         private short myKey = 0;
-        //ConsoleKeyInfo myKey;
         public void GetKey()
         {
-            /*
-            if(Console.KeyAvailable)
-            {
-                myKey = Console.ReadKey();
-                if(myKey.Key == ConsoleKey.RightArrow)
-                {
-                    GameManager.Instance.player.SetState((int)Player.Move.right);
-                }
-                else if (myKey.Key == ConsoleKey.LeftArrow)
-                {
-                    GameManager.Instance.player.SetState((int)Player.Move.left);
-                }
-                else if (myKey.Key == ConsoleKey.UpArrow)
-                {
-                    GameManager.Instance.player.SetState((int)Player.Move.up);
-                }
-                else if (myKey.Key == ConsoleKey.DownArrow)
-                {
-                    GameManager.Instance.player.SetState((int)Player.Move.down);
-                }
-            }
-            */
-            
             myKey = 0;
             if (Console.KeyAvailable) // 키입력이 존재한다면
             {

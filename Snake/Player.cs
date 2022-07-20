@@ -16,10 +16,8 @@ namespace Snake
             right,
             start,
         }
-        public int[] tailX = new int[17];
-        public int[] tailY = new int[17];
-        private int[] tempX = new int[17];
-        private int[] tempY = new int[17];
+        public int[] tailX = new int[15];
+        public int[] tailY = new int[15];
 
         private int state = (int)Move.start;
 
@@ -34,37 +32,45 @@ namespace Snake
         }
         public void Awake() // 초기 위치
         {
-            currentX = Setting.Instance.GetWidth() / 2;
-            currentY = Setting.Instance.GetHeight() / 2;
+            //currentX = Setting.Instance.GetWidth() / 2 / 2;
+            //currentY = Setting.Instance.GetHeight() / 2 / 2;
+            currentX = Setting.Instance.GetWidth() / 2 - 3;
+            currentY = Setting.Instance.GetHeight() / 2 - 3;
         }
         public void Movement()
         {
             tailX[0] = currentX;
             tailY[0] = currentY;
-
-            for (int i = 0; i < count; i++)
+            for (int i = count - 1; i > 0; i--)
             {
-                tempX[i] = tailX[i];
-                tempY[i] = tailY[i];
-            }
-            for(int i = 1; i < count; i++)
-            {
-                tailX[i] = tempX[i - 1];
-                tailY[i] = tempY[i - 1];
+                tailX[i] = tailX[i - 1];
+                tailY[i] = tailY[i - 1];
             }
             switch (state) // 상태에 따른 이동
             {
-                case (int)Move.up:{ currentY -= 1;break; }
-                case (int)Move.down:{currentY += 1;break;}
-                case (int)Move.left: { currentX -= 1;break; }
-                case (int)Move.right: { currentX += 1; break; }
+                case (int)Move.up:{ currentX -= 1;break; }
+                case (int)Move.down:{currentX += 1;break;}
+                case (int)Move.left: { currentY -= 1;break; }
+                case (int)Move.right: { currentY += 1; break; }
                 case (int)Move.start: { break; }
             }
             // 범위 제한
-            if (currentX < 0) { currentX = 0; }
-            else if (currentX > Setting.Instance.GetWidth() - 1) { currentX = Setting.Instance.GetWidth() - 1; }
-            else if (currentY < 0) { currentY = 0; }
-            else if (currentY > Setting.Instance.GetHeight() - 1) { currentY = Setting.Instance.GetHeight() - 1; }
+            if (currentX < 0 || currentX > Setting.Instance.GetWidth() / 2 - 1 || currentY < 0 || currentY > Setting.Instance.GetHeight() / 2 - 1) { GameManager.Instance.over = true; }
+        }
+        public void SetTailDir()
+        {
+            if(currentX == GameManager.Instance.item.x && currentY == GameManager.Instance.item.y)
+            {
+                count++;
+                switch (state) // 상태에 따른 이동
+                {
+                    case (int)Move.up: { currentX -= 1; break; }
+                    case (int)Move.down: { currentX += 1; break; }
+                    case (int)Move.left: { currentY -= 1; break; }
+                    case (int)Move.right: { currentY += 1; break; }
+                    case (int)Move.start: { break; }
+                }
+            }
         }
         public void SetState(int dir) // 이동 방향 설정
         {

@@ -8,14 +8,14 @@ namespace Snake
 {
     public class Render
     {
-        //private char[,] tile;
-        //private int row;
-        //private int column;
-        /*
+        private char[,] tile;
+        private int row;
+        private int column;
+        
         public void CreateTile()
         {
-            row = Setting.Instance.GetWidth();
-            column = Setting.Instance.GetHeight();
+            row = Setting.Instance.GetWidth() / 2;
+            column = Setting.Instance.GetHeight() / 2;
 
             tile = new char[row, column];
 
@@ -27,53 +27,42 @@ namespace Snake
                 }
             }
         }
-        */
+        
         
         public void RenderTile()
         {
-            /*
             Console.SetCursorPosition(0, 0);
+            Console.ResetColor();
+            Console.WriteLine("SCORE :  " + GameManager.Instance.score);
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Black;
             for (int i = 0; i < row; i++)
             {
                 for(int j = 0; j < column; j++)
                 {
                     if(i == GameManager.Instance.player.currentX && j == GameManager.Instance.player.currentY)
                     {
-                        tile[i, j] = '●';
-                        Console.Write(tile[i, j]);
+                        tile[i, j] = '■';
                     }
                     else if (i == GameManager.Instance.item.x && j == GameManager.Instance.item.y)
                     {
-                        tile[i, j] = '★';
-                        Console.Write(tile[i, j]);
+                        tile[i, j] = '◈';
                     }
                     else
                     {
                         tile[i, j] = '　';
-                        Console.Write(tile[i, j]);
-                    }
-                    for (int k = 0; k < GameManager.Instance.player.count; k++)
-                    {
-                        if (i == GameManager.Instance.player.tailX[k] && j == GameManager.Instance.player.tailY[k])
+                        for (int k = 0; k < GameManager.Instance.player.count; k++)
                         {
-                            tile[i, j] = '●';
-                            Console.Write(tile[i, j]);
+                            if (i == GameManager.Instance.player.tailX[k] && j == GameManager.Instance.player.tailY[k])
+                            {
+                                tile[i, j] = '◆';
+                            }
                         }
                     }
+                    Console.Write(tile[i, j]);
                 }
-            }*/
-            
-            Console.Clear();
-            Console.SetCursorPosition(GameManager.Instance.player.currentX, GameManager.Instance.player.currentY);
-            Console.Write('@');
-            for(int k = 0; k < GameManager.Instance.player.count; k++)
-            {
-                Console.SetCursorPosition(GameManager.Instance.player.tailX[k], GameManager.Instance.player.tailY[k]);
-                Console.Write('+');
+                Console.WriteLine();
             }
-            Console.SetCursorPosition(GameManager.Instance.item.x, GameManager.Instance.item.y);
-            Console.Write('#');
-            
         }
     }
 }

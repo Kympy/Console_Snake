@@ -11,23 +11,41 @@ namespace Snake
         public Player player = new Player();
         public Item item = new Item();
         public Render render = new Render();
-
-        public bool first = false; // 처음 꼬리를 먹는지
+        public bool over = false;
+        public bool win = false;
+        public int score = 0;
         public void Awake()
         {
             InitWindow();
         }
         public void Start()
         {
-            //render.CreateTile();
+            render.CreateTile();
         }
-        public void Update()
+        public bool Update()
         {
             Input.Instance.GetKey();
-            CheckItem();
             player.Movement();
+            CheckItem();
             render.RenderTile();
+            if (over == true)
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("\t--Game Over--");
+                return false;
+            }
             GameWin();
+            if (win == true)
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("\t--Game Win--");
+                return false;
+            }
+            return true;
         }
         private void CheckItem()
         {
@@ -42,12 +60,10 @@ namespace Snake
             Console.CursorVisible = false;
             int w = Setting.Instance.GetWidth();
             int h = Setting.Instance.GetHeight();
-            Console.SetWindowSize(w, h);
+            Console.SetWindowSize(w, h / 2 + 2);
             Console.BufferWidth = w;
-            Console.BufferHeight = h;
+            Console.BufferHeight = h / 2 + 2;
             Console.Title = "SNAKE GAME";
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.ForegroundColor = ConsoleColor.Black;
         }
         public bool GameWin()
         {
@@ -56,7 +72,7 @@ namespace Snake
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.WriteLine("\tGame Win");
+                Console.WriteLine("\t--Game Win--");
                 return true;
             }
             else return false;
