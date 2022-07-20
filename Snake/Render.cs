@@ -28,27 +28,30 @@ namespace Snake
             }
         }
         
-        
         public void RenderTile()
         {
             Console.SetCursorPosition(0, 0);
             Console.ResetColor();
-            Console.WriteLine("SCORE :  " + GameManager.Instance.score);
+            Console.WriteLine("P1 SCORE : " + GameManager.Instance.score1 + "  P2 SCORE : " + GameManager.Instance.score2 + "  MAX : 300");
             Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
             for (int i = 0; i < row; i++)
             {
                 for(int j = 0; j < column; j++)
                 {
-                    if(i == GameManager.Instance.player.currentX && j == GameManager.Instance.player.currentY)
+                    if(i == GameManager.Instance.player.currentX && j == GameManager.Instance.player.currentY) // 플레이어 머리 그리기
                     {
                         tile[i, j] = '■';
                     }
-                    else if (i == GameManager.Instance.item.x && j == GameManager.Instance.item.y)
+                    else if(i == GameManager.Instance.ai.currentX && j == GameManager.Instance.ai.currentY) // ai 머리 그리기
+                    {
+                        tile[i, j] = '●';
+                    }
+                    else if (i == GameManager.Instance.item.x && j == GameManager.Instance.item.y) // 아이템 그리기
                     {
                         tile[i, j] = '◈';
                     }
-                    else
+                    else // 꼬리 그리기
                     {
                         tile[i, j] = '　';
                         for (int k = 0; k < GameManager.Instance.player.count; k++)
@@ -56,6 +59,13 @@ namespace Snake
                             if (i == GameManager.Instance.player.tailX[k] && j == GameManager.Instance.player.tailY[k])
                             {
                                 tile[i, j] = '◆';
+                            }
+                        }
+                        for (int k = 0; k < GameManager.Instance.ai.count; k++)
+                        {
+                            if (i == GameManager.Instance.ai.tailX[k] && j == GameManager.Instance.ai.tailY[k])
+                            {
+                                tile[i, j] = '●';
                             }
                         }
                     }

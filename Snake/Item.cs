@@ -20,7 +20,7 @@ namespace Snake
         {
             ResetPos();
         }
-        public void ResetPos()
+        public void ResetPos() // 아이템 위치 초기화
         {
             X = random.Next(1, Setting.Instance.GetWidth() / 2 - 1);
             Y = random.Next(1, Setting.Instance.GetHeight() / 2 - 1);
