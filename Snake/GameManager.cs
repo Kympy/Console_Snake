@@ -13,23 +13,23 @@ namespace Snake
         public Render render = new Render();
         public AI ai = new AI();
 
-        public bool over = false;
+        public bool over = false; // 게임 오버를 체크한다
 
-        public int score1 = 0;
-        public int score2 = 0;
+        public int score1 = 0; // 플레이어1의 점수
+        public int score2 = 0; // 플레이어2의 점수
 
-        private const int waitTick = 1000 / 5;
+        private const int waitTick = 1000 / 5; // 화면 갱신 시간
         private long currentTick;
         private long lastTick = 0;
         public void Awake()
         {
-            InitWindow();
+            InitWindow(); // 윈도우 기본 세팅
         }
         public void Start()
         {
-            render.CreateTile();
+            render.CreateTile(); // 게임이 진행될 맵을 생성
         }
-        public void Update()
+        public void Update() // 게임을 업데이트
         {
             while (true)
             {
@@ -38,27 +38,27 @@ namespace Snake
                 {
                     lastTick = currentTick;
 
-                    Input.Instance.GetKey();
-                    player.Movement();
-                    ai.StartAI();
-                    CheckItem();
-                    render.RenderTile();
-                    if (over)
+                    Input.Instance.GetKey(); // 키 입력
+                    player.Movement(); // 플레이어 움직임
+                    ai.StartAI(); // AI 움직임
+                    CheckItem(); // 아이템 체크
+                    render.RenderTile(); // 화면 그리기
+                    if (over) // 게임이 끝나면
                     {
-                        Console.Clear();
+                        Console.Clear(); // 화면 지우고
                         Console.WriteLine();
                         Console.WriteLine();
-                        Console.WriteLine("\t--Game Over--");
+                        Console.WriteLine("\t--Game Over--"); // 오버
                         return;
                     }
-                    if(GameWin())
+                    if(GameWin()) // 이기면 종료
                     {
                         return;
                     }
                 }
             } 
         }
-        private void CheckItem()
+        private void CheckItem() // 플레이어나 ai 가 아이템을 먹었는지 체크
         {
             if (player.currentX == item.x && player.currentY == item.y)
             {

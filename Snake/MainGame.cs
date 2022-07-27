@@ -14,24 +14,6 @@ namespace Snake
             GameManager.Instance.Awake();
             GameManager.Instance.Start();
             GameManager.Instance.Update();
-            /*
-            long currentTick;
-            long lastTick = 0;
-
-            while(true)
-            {
-                currentTick = Environment.TickCount & Int32.MaxValue;
-                if (currentTick - lastTick > waitTick)
-                {
-                    lastTick = currentTick;
-
-                    if(GameManager.Instance.Update() == false)
-                    {
-                        return;
-                    }
-                }
-                else continue;
-            }*/
         }
     }
 }

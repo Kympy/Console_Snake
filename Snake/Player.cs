@@ -35,9 +35,9 @@ namespace Snake
             currentX = Setting.Instance.GetWidth() / 2 - 3;
             currentY = Setting.Instance.GetHeight() / 2 - 3;
         }
-        public void Movement()
+        public void Movement() // 플레이어의 이동
         {
-            tailX[0] = currentX;
+            tailX[0] = currentX; // 첫 꼬리의 좌표
             tailY[0] = currentY;
             for (int i = count - 1; i > 0; i--)
             {

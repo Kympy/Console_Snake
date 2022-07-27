@@ -23,12 +23,12 @@ namespace Snake
             {
                 for(int j = 0; j < column; j++)
                 {
-                    tile[i, j] = '　';
+                    tile[i, j] = '　'; // 공백으로 초기화
                 }
             }
         }
         
-        public void RenderTile()
+        public void RenderTile() // 화면 그리기
         {
             Console.SetCursorPosition(0, 0);
             Console.ResetColor();
@@ -54,14 +54,14 @@ namespace Snake
                     else // 꼬리 그리기
                     {
                         tile[i, j] = '　';
-                        for (int k = 0; k < GameManager.Instance.player.count; k++)
+                        for (int k = 0; k < GameManager.Instance.player.count; k++) // 플레이어의 꼬리
                         {
                             if (i == GameManager.Instance.player.tailX[k] && j == GameManager.Instance.player.tailY[k])
                             {
                                 tile[i, j] = '◆';
                             }
                         }
-                        for (int k = 0; k < GameManager.Instance.ai.count; k++)
+                        for (int k = 0; k < GameManager.Instance.ai.count; k++) // AI의 꼬리
                         {
                             if (i == GameManager.Instance.ai.tailX[k] && j == GameManager.Instance.ai.tailY[k])
                             {

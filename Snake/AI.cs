@@ -19,7 +19,7 @@ namespace Snake
             tailY = new int[15];
             count = 0;
         }
-        public void FindItem()
+        public void FindItem() // x, y 의 거리차를 기준으로 추적함
         {
             xDistance = (GameManager.Instance.item.x - currentX); // x 거리
             yDistance = (GameManager.Instance.item.y - currentY); // y 거리
