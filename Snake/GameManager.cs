@@ -62,13 +62,13 @@ namespace Snake
         {
             if (player.currentX == item.x && player.currentY == item.y)
             {
-                player.count++;
+                player.count++; // 꼬리 갯수 증가
                 score1 += 20;
-                item.ResetPos();
+                item.ResetPos(); // 아이템 재배치
             }
             else if (ai.currentX == item.x && ai.currentY == item.y)
             {
-                ai.count++;
+                ai.count++; // 꼬리 갯수 증가
                 score2 += 20;
                 item.ResetPos();
             }

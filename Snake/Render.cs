@@ -14,7 +14,7 @@ namespace Snake
         
         public void CreateTile()
         {
-            row = Setting.Instance.GetWidth() / 2;
+            row = Setting.Instance.GetWidth() / 2; // 윈도우 크기 절반만큼
             column = Setting.Instance.GetHeight() / 2;
 
             tile = new char[row, column];

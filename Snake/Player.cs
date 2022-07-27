@@ -52,8 +52,9 @@ namespace Snake
                 case (int)Move.right: { currentY += 1; break; }
                 case (int)Move.start: { break; }
             }
-            // 범위 제한
-            if (currentX < 0 || currentX > Setting.Instance.GetWidth() / 2 - 1 || currentY < 0 || currentY > Setting.Instance.GetHeight() / 2 - 1) { GameManager.Instance.over = true; }
+            // 이동 범위 제한 ( 맵의 끝 체크)
+            if (currentX < 0 || currentX > Setting.Instance.GetWidth() / 2 - 1 || currentY < 0 || currentY > Setting.Instance.GetHeight() / 2 - 1)
+            { GameManager.Instance.over = true; }
         }
         public void SetState(int dir) // 이동 방향 설정
         {
